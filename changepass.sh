@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # --- Change domain password ver 0.1
+# --- Ideas and comments: nuno@freelancesamurai.com
 
 # --- Looks for the existance of smbpasswd, if it doesnt't exist (aka OS X Lion)
 # --- it will connect to a linux host and run the command from there.
@@ -21,8 +22,8 @@ fi
 PASSWDPATH=`whereis smbpasswd`
 if [[ -z "PASSWDPATH" ]]; then
 	echo "smbpasswd found in system, continuing locally -- $PASSWDPATH --"
-	smbpasswd -U $1 -r 192.168.25.21
+	smbpasswd -U $1 -r 192.168.0.1
 else
 	echo "smbpasswd not found, establishing connection with a remote system, $1."
-	ssh -l aisight 192.168.25.111 smbpasswd -U $1 -r 192.168.25.21
+	ssh -l linuxuser 192.168.1.200 smbpasswd -U $1 -r 192.168.0.1
 fi

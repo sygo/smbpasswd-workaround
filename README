@@ -1,0 +1,11 @@
+OS X Lion doesn't ship with smbpasswd any more, which means you can't change your windows domain password from the command line. 
+This script looks for smbpasswd locally (just in case some of your users aren't running Lion) and if doesn't find it it connects 
+to a remote linux box where you can use it's smbpasswd with minimal hassle for the OS X user. 
+I don't expect this to be useful for everybody, it doesn't fix the problem it just tries to circumvent it and make it less painful for the end user.
+
+Things to look for in the script to adapt it to your own network: the ip addresses, 192.168.0.1 should reflect your DC and 192.168.1.200 your linux box
+that you can leverage in case smbpasswd isn't available locally. mind the username when the system tries to connect to the linux via SSH as well.
+
+I strongly recommend that you lock down the user account that will connect to that linux box, make sure they can only run smbpasswd.
+
+ideas and comments: nuno@freelancesamurai.com
